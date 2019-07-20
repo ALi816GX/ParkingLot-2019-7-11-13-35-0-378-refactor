@@ -13,24 +13,25 @@ import java.util.Map;
  */
 public class ParkingLot {
 
-    private int capacity = 10;
+    public static int DEFAULT_CAPACITY = 10;
 
-    Map<Ticket,Car> map = new HashMap<>(capacity);
+    private int capacity = DEFAULT_CAPACITY;
+    private Map<Ticket,Car> map = new HashMap<>(capacity);
 
     public ParkingLot() {
 
     }
 
-
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
+
 
     public Ticket parkCar(Car car){
 
         Ticket ticket = null;
 
-        if(map.size() <= 9){
+        if(this.map.size() < this.capacity){
             ticket = new Ticket();
             map.put(ticket,car);
         }
@@ -62,9 +63,6 @@ public class ParkingLot {
         return map.size();
     }
 
-    public void setMap(Map<Ticket, Car> map) {
-        this.map = map;
-    }
 
     public int getCapacity() {
         return capacity;
