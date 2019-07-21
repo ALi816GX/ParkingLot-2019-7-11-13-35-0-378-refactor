@@ -49,4 +49,5 @@ public class ServiceManager {
     public void addPakinglot(ParkingLot parkingLot){
         proxyBoy.addPakinglot(parkingLot);
     }
+
 }

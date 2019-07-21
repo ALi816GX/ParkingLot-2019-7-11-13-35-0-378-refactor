@@ -105,6 +105,7 @@ public class ParkingBoy {
     }
 
     private Car chosedFetchCar(Ticket ticket){
+
         Car car = null;
 
         for(ParkingLot parkingLot:this.parkingLots){

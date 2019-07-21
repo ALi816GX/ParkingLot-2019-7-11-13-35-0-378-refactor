@@ -32,9 +32,9 @@ public class ParkingLot {
 
         Ticket ticket = null;
 
-        if(this.map.size() < this.capacity){
+        if(getCarsAcutalCapacity() < this.capacity){
             ticket = new Ticket();
-            map.put(ticket,car);
+            this.map.put(ticket,car);
         }
 
         return ticket;
@@ -45,14 +45,14 @@ public class ParkingLot {
 
         Car car = map.get(ticket);
 
-        map.remove(ticket);
+        this.map.remove(ticket);
 
         return car;
 
     }
 
     public boolean isCapacityFull(){
-        return this.map.size() >= this.capacity;
+        return getCarsAcutalCapacity() >= this.capacity;
     }
 
     public Map<Ticket, Car> getCarsMap() {
