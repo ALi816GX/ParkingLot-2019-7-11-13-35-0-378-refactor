@@ -1,6 +1,8 @@
 package com.thoughtworks.tdd;
 
 
+import java.util.List;
+
 /**
  * Created with IDEA
  *
@@ -21,36 +23,53 @@ public class SuperSmartParkingBoy extends SmartParkingBoy{
     @Override
     public Ticket parkCar(Car car){
 
-        int index = 0;
-        int max_available_position_rate = 0;
-        int i = 0;
-        for (ParkingLot parkingLot:getParkingLots()) {
 
-            double available_position_rate = parkingLot.getCapacity() - parkingLot.getCarsMap().size() * 1.00 / parkingLot.getCapacity();
+        ParkingLot parkingLot = getMaxEmptyRateParkinglot();
 
-            if(available_position_rate >= max_available_position_rate){
-                max_available_position_rate = parkingLot.getCarsMap().size();
-                index = i;
-            }
-            i++;
-        }
+        return parkingLot.parkCar(car);
 
-
-        return getParkingLots().get(index).parkCar(car);
     }
-
 
 
     public int getParkingLotIndexByTicket(Ticket ticket) {
 
-        int index = -1;
-        for (int i = 0;i < getParkingLots().size();i++) {
-            if(getParkingLots().get(i).getCarsMap().containsKey(ticket)){
-                index = i;
+        int indexResult = -1;
+
+        List<ParkingLot> parkingLots = getParkingLots();
+
+        for (ParkingLot parkingLot:parkingLots){
+            if(parkingLot.getCarsMap().containsKey(ticket)){
+                indexResult = parkingLots.indexOf(parkingLot);
                 break;
             }
         }
-        return index;
+
+        return indexResult;
+
+    }
+
+
+    public ParkingLot getMaxEmptyRateParkinglot(){
+
+        int index = 0;
+        int maxEmptyPositionRate = 0;
+        List<ParkingLot> parkingLots = getParkingLots();
+
+        for (ParkingLot item:parkingLots) {
+            if(getAvailablePositionRate(item) >= maxEmptyPositionRate){
+                maxEmptyPositionRate = item.getCarsMap().size();
+                index = parkingLots.indexOf(item);
+            }
+        }
+
+        return parkingLots.get(index);
+
+    }
+
+
+    private double getAvailablePositionRate(ParkingLot parkingLot){
+
+        return parkingLot.getCapacity() - parkingLot.getCarsMap().size() * 1.00 / parkingLot.getCapacity();
 
     }
 }

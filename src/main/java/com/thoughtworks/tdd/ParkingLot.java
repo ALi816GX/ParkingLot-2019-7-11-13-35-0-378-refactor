@@ -25,6 +25,7 @@ public class ParkingLot {
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
+        this.map =  new HashMap<>(capacity);
     }
 
     public Ticket parkCar(Car car){
