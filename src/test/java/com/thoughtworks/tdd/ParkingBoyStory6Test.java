@@ -28,7 +28,7 @@ public class ParkingBoyStory6Test {
 
         manager.parkCar(new Car());
 
-        Assertions.assertEquals(manager.getSpecifiedBoy().getList().get(0).getCarsAcutalCapacity(), 1);
+        Assertions.assertEquals(manager.getSpecifiedBoy().getParkingLots().get(0).getCarsAcutalCapacity(), 1);
 
 
     }
@@ -45,7 +45,7 @@ public class ParkingBoyStory6Test {
             manager.parkByself(new Car());
         }
 
-        int actual = manager.getProxyBoy().getList().get(1).getCarsAcutalCapacity();
+        int actual = manager.getProxyBoy().getParkingLots().get(1).getCarsAcutalCapacity();
 
         Assertions.assertEquals(actual, 2);
     }

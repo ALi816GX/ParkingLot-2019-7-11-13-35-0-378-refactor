@@ -22,14 +22,39 @@ public class SmartParkingBoy extends ParkingBoy{
     @Override
     public Ticket parkCar(Car car) {
 
+        ParkingLot chosedParkinglot = getMoreEmptyParkinglot();
+
+        return chosedParkinglot.parkCar(car);
+
+    }
+
+
+
+    private ParkingLot getMoreEmptyParkinglot(){
         int index = 0;
-        for (int i = 0; i < getList().size(); i++) {
-            if (getList().get(i).getCarsAcutalCapacity() < getList().get(index).getCarsAcutalCapacity()) {
+
+        for (int i = 0; i < getParkingLots().size(); i++) {
+
+            if (getAcutalCapacityByParkinglotsIndex(i) < getAcutalCapacityByParkinglotsIndex(index)) {
                 index = i;
             }
+
         }
 
-        return getList().get(index).parkCar(car);
+        ParkingLot chosedParkinglot = getParkingLotByIndex(index);
+
+        return chosedParkinglot;
+
+    }
+
+
+
+    private int getAcutalCapacityByParkinglotsIndex(int index){
+        return getParkingLots().get(index).getCarsAcutalCapacity();
+    }
+
+    private ParkingLot getParkingLotByIndex(int index){
+        return getParkingLots().get(index);
     }
 
 }

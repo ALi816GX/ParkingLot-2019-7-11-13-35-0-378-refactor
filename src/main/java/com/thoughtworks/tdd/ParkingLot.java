@@ -15,17 +15,17 @@ public class ParkingLot {
 
     public static int DEFAULT_CAPACITY = 10;
 
-    private int capacity = DEFAULT_CAPACITY;
-    private Map<Ticket,Car> map = new HashMap<>(capacity);
+    private int capacity;
+    private Map<Ticket,Car> map;
 
     public ParkingLot() {
-
+        this.capacity = DEFAULT_CAPACITY;
+        this.map =  new HashMap<>(capacity);
     }
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
-
 
     public Ticket parkCar(Car car){
 
@@ -55,12 +55,12 @@ public class ParkingLot {
     }
 
     public Map<Ticket, Car> getCarsMap() {
-        return map;
+        return this.map;
     }
 
 
     public int getCarsAcutalCapacity(){
-        return map.size();
+        return this.map.size();
     }
 
 

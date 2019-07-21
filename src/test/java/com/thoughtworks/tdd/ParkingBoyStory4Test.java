@@ -30,7 +30,7 @@ public class ParkingBoyStory4Test {
             smartParkingBoy.parkCar(new Car());
         }
 
-        Assertions.assertSame(2,smartParkingBoy.getList().get(1).getCarsAcutalCapacity());
+        Assertions.assertSame(2,smartParkingBoy.getParkingLots().get(1).getCarsAcutalCapacity());
 
     }
 
