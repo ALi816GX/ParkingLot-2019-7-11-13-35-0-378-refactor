@@ -52,12 +52,12 @@ public class SuperSmartParkingBoy extends SmartParkingBoy{
     public ParkingLot getMaxEmptyRateParkinglot(){
 
         int index = 0;
-        int maxEmptyPositionRate = 0;
+        double maxEmptyPositionRate = 0;
         List<ParkingLot> parkingLots = getParkingLots();
 
         for (ParkingLot item:parkingLots) {
             if(getAvailablePositionRate(item) >= maxEmptyPositionRate){
-                maxEmptyPositionRate = item.getCarsMap().size();
+                maxEmptyPositionRate = getAvailablePositionRate(item);
                 index = parkingLots.indexOf(item);
             }
         }
@@ -69,7 +69,11 @@ public class SuperSmartParkingBoy extends SmartParkingBoy{
 
     private double getAvailablePositionRate(ParkingLot parkingLot){
 
-        return parkingLot.getCapacity() - parkingLot.getCarsMap().size() * 1.00 / parkingLot.getCapacity();
+        double EmptyNumInParkinglot = (parkingLot.getCapacity() - parkingLot.getCarsAcutalCapacity()) * 1.00;
+
+        return EmptyNumInParkinglot / parkingLot.getCapacity();
 
     }
+
+
 }
